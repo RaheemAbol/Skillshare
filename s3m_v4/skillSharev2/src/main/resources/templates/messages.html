@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Messages</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="profile-container">
+    <h2>My Messages</h2>
+    <div class="messages-container" th:each="message : ${messages}">
+        <div class="message-card" style="color:navy;">
+            <p><strong>From:</strong> <span th:text="${message.senderEmail}"></span></p>
+            <p><strong>Message:</strong> <span th:text="${message.content}"></span></p>
+        </div>
+        <hr>
+    </div>
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>

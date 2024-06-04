@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sent Messages</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="profile-container">
+    <h2>Sent Messages</h2>
+    <div class="messages-container" style="color:navy;" th:each="message : ${sentMessages}">
+        <div class="message-card">
+            <p><strong>To:</strong> <span th:text="${message.receiverEmail}"></span></p>
+            <form th:action="@{/messages/update/{id}(id=${message.id})}" method="post" class="message-form">
+                <textarea name="content" required th:text="${message.content}"></textarea><br>
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/messages/delete/{id}(id=${message.id})}" method="post" class="message-form">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        <hr>
+    </div>
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>

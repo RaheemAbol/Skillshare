@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <h2>Welcome, <span th:text="${buddy.email}"></span>!</h2>
+    <form th:action="@{/}" method="get" class="form-group">
+        <label for="skill">Filter by skill:</label>
+        <select id="skill" name="skill">
+            <option value="">--Select a skill--</option>
+            <option th:each="skill : ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
+        </select>
+        <button style="margin-top: 10px;" type="submit">Filter</button>
+    </form>
+    <h3>Buddies and their Posts:</h3>
+    <div th:each="buddy : ${buddies}" class="buddy-posts">
+        <h4><a th:href="@{/profile/{email}(email=${buddy.email})}" th:text="${buddy.email}"></a></h4>
+        <div th:each="post : ${buddy.posts}">
+            <p th:text="${post.content}"></p>
+        </div>
+    </div>
+</div>
+<center>
+<button id="post">
+    <a style="all:unset;" th:href="@{/post}">Create a Post</a>
+</button>
+</center>
+</body>
+</html>

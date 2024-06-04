@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="profile-container">
+    <h2>Profile</h2>
+    <form th:action="@{/profile/update}" th:object="${buddy}" method="post" class="profile-form">
+        <label for="bio">Bio:</label>
+        <textarea id="bio" th:field="*{bio}"></textarea><br>
+        <div class="form-group">
+            <fieldset>
+                <legend>Skills:</legend>
+                <div th:each="skill : ${skills}">
+                    <input type="checkbox" th:field="*{skills}" th:value="${skill.id}"
+                           th:checked="${buddy.skills.contains(skill)}"/>
+                    <label th:text="${skill.name}"></label><br>
+                </div>
+            </fieldset>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+    <form th:action="@{/profile/delete}" method="post">
+        <button type="submit">Delete Account</button>
+    </form>
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>

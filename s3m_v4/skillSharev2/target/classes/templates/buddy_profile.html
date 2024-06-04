@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buddy Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="profile-container">
+    <h2>Profile of <span th:text="${buddy.email}"></span></h2>
+    <p><strong>Bio:</strong> <span th:text="${buddy.bio}"></span></p>
+
+    <h3>Send a Message:</h3>
+    <form th:action="@{/profile/{email}/message(email=${buddy.email})}" method="post" class="profile-form">
+        <label for="content">Message:</label>
+        <textarea id="content" name="content" required></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>

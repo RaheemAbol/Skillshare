@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar Fragment</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/profile}">Profile</a></li>
+            <li><a th:href="@{/post}">Post</a></li>
+            <li><a th:href="@{/messages}">Messages</a></li>
+            <li><a th:href="@{/messages/sent}">Sent Messages</a></li>
+            <li><a th:href="@{/login}">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
